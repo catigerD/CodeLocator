@@ -1,5 +1,9 @@
 apply plugin: 'com.android.library'
 
+if(useLocalAAR) {
+    apply plugin: 'com.kezong.fat-aar'
+}
+
 if (getProperties("customUploadGradlePluginUrl") != null) {
     apply from: getProperties("customUploadGradlePluginUrl")
 }
@@ -34,7 +38,14 @@ dependencies {
         implementation "androidx.appcompat:appcompat:${androidx_version}"
     }
 
-    if (useSourceCode) {
+    if(useLocalAAR) {
+        embed project(path: ':CodeLocatorLancetXml')
+        embed project(path: ':CodeLocatorLancetActivity')
+        embed project(path: ':CodeLocatorLancetToast')
+        embed project(path: ':CodeLocatorLancetPopup')
+        embed project(path: ':CodeLocatorLancetView')
+        embed project(path: ':CodeLocatorLancetDialog')
+    } else if (useSourceCode) {
         implementation project(path: ':CodeLocatorLancetXml')
         implementation project(path: ':CodeLocatorLancetActivity')
         implementation project(path: ':CodeLocatorLancetToast')
@@ -50,7 +61,7 @@ dependencies {
         implementation "com.bytedance.tools.codelocator:codelocator-lancet-popup:$codelocator_version"
     }
 
-    compileOnly 'me.ele:lancet-base:1.0.6'
+    implementation "io.github.knight-zxw:lancet-runtime:${lancexVersion}"
 }
 
 apply plugin: "com.vanniktech.maven.publish"
