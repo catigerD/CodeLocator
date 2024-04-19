@@ -12,17 +12,20 @@ import android.widget.ImageView;
 import androidx.annotation.DrawableRes;
 
 import com.bytedance.tools.codelocator.CodeLocator;
+import com.knightboost.lancet.api.Origin;
+import com.knightboost.lancet.api.Scope;
+import com.knightboost.lancet.api.This;
+import com.knightboost.lancet.api.annotations.ClassOf;
+import com.knightboost.lancet.api.annotations.Proxy;
+import com.knightboost.lancet.api.annotations.TargetClass;
+import com.knightboost.lancet.api.annotations.TargetMethod;
+import com.knightboost.lancet.api.annotations.Weaver;
 
-import me.ele.lancet.base.Origin;
-import me.ele.lancet.base.Scope;
-import me.ele.lancet.base.This;
-import me.ele.lancet.base.annotations.ClassOf;
-import me.ele.lancet.base.annotations.Proxy;
-import me.ele.lancet.base.annotations.TargetClass;
-
+@Weaver
 public class XmlLancet {
 
-    @Proxy("inflate")
+    @Proxy
+    @TargetMethod(methodName = "inflate")
     @TargetClass(value = "android.view.ViewStub")
     public View inflate() {
         final ViewStub viewStub = (ViewStub) This.get();
@@ -32,7 +35,8 @@ public class XmlLancet {
         return view;
     }
 
-    @Proxy("inflate")
+    @Proxy
+    @TargetMethod(methodName = "inflate")
     @TargetClass(value = "android.view.LayoutInflater")
     public View inflate(int resourceId, ViewGroup root) {
         LayoutInflater inflater = (LayoutInflater) This.get();
@@ -41,7 +45,8 @@ public class XmlLancet {
         return view;
     }
 
-    @Proxy("inflate")
+    @Proxy
+    @TargetMethod(methodName = "inflate")
     @TargetClass(value = "android.view.LayoutInflater")
     public View inflate(int resourceId, ViewGroup root, boolean attachToRoot) {
         LayoutInflater inflater = (LayoutInflater) This.get();
@@ -50,7 +55,8 @@ public class XmlLancet {
         return view;
     }
 
-    @Proxy("inflate")
+    @Proxy
+    @TargetMethod(methodName = "inflate")
     @TargetClass(value = "android.view.View")
     public static View inflate(Context context, int resourceId, ViewGroup root) {
         View view = (View) Origin.call();
@@ -58,7 +64,8 @@ public class XmlLancet {
         return view;
     }
 
-    @Proxy("getDrawable")
+    @Proxy
+    @TargetMethod(methodName = "getDrawable")
     @TargetClass(value = "android.content.res.Resources")
     public Drawable getDrawable(int id) {
         Drawable drawable = (Drawable) Origin.call();
@@ -68,7 +75,8 @@ public class XmlLancet {
         return drawable;
     }
 
-    @Proxy("getDrawable")
+    @Proxy
+    @TargetMethod(methodName = "getDrawable")
     @TargetClass(value = "android.content.res.Resources")
     public Drawable getDrawable(int id, @ClassOf("android.content.res.Resources$Theme") Object theme) {
         Drawable drawable = (Drawable) Origin.call();
@@ -78,7 +86,8 @@ public class XmlLancet {
         return drawable;
     }
 
-    @Proxy("setImageResource")
+    @Proxy
+    @TargetMethod(methodName = "setImageResource")
     @TargetClass(value = "android.widget.ImageView", scope = Scope.ALL)
     public void setImageResourceAll(@DrawableRes int resId) {
         try {
@@ -89,7 +98,8 @@ public class XmlLancet {
         Origin.callVoid();
     }
 
-    @Proxy("setImageResource")
+    @Proxy
+    @TargetMethod(methodName = "setImageResource")
     @TargetClass(value = "android.widget.ImageView", scope = Scope.SELF)
     public void setImageResourceSelf(@DrawableRes int resId) {
         try {

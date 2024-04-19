@@ -1,7 +1,20 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'me.ele.lancet'
+
+apply plugin: 'bytex'
+ByteX {
+    enable true
+    enableInDebug true
+}
+
+
+apply plugin: 'LancetX'
+LancetX{
+    enable true
+    enableInDebug true
+
+}
 
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
@@ -72,5 +85,4 @@ dependencies {
             debugImplementation "com.bytedance.tools.codelocator:codelocator-lancet-popup:$codelocator_version"
         }
     }
-    compileOnly 'me.ele:lancet-base:1.0.6'
 }

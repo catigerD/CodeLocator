@@ -6,16 +6,19 @@ import android.widget.PopupWindow;
 
 import com.bytedance.tools.codelocator.CodeLocator;
 import com.bytedance.tools.codelocator.utils.ViewUtils;
+import com.knightboost.lancet.api.Origin;
+import com.knightboost.lancet.api.Scope;
+import com.knightboost.lancet.api.This;
+import com.knightboost.lancet.api.annotations.Proxy;
+import com.knightboost.lancet.api.annotations.TargetClass;
+import com.knightboost.lancet.api.annotations.TargetMethod;
+import com.knightboost.lancet.api.annotations.Weaver;
 
-import me.ele.lancet.base.Origin;
-import me.ele.lancet.base.Scope;
-import me.ele.lancet.base.This;
-import me.ele.lancet.base.annotations.Proxy;
-import me.ele.lancet.base.annotations.TargetClass;
-
+@Weaver
 public class PopupLancet {
 
-    @Proxy("showAsDropDown")
+    @Proxy()
+    @TargetMethod(methodName = "showAsDropDown")
     @TargetClass(value = "android.widget.PopupWindow", scope = Scope.SELF)
     public void showAsDropDownSelf(View anchor) {
         try {
@@ -29,7 +32,8 @@ public class PopupLancet {
         Origin.callVoid();
     }
 
-    @Proxy("showAsDropDown")
+    @Proxy()
+    @TargetMethod(methodName = "showAsDropDown")
     @TargetClass(value = "android.widget.PopupWindow", scope = Scope.SELF)
     public void showAsDropDownSelf(View anchor, int xoff, int yoff) {
         try {
@@ -43,7 +47,8 @@ public class PopupLancet {
         Origin.callVoid();
     }
 
-    @Proxy("showAsDropDown")
+    @Proxy()
+    @TargetMethod(methodName = "showAsDropDown")
     @TargetClass(value = "android.widget.PopupWindow", scope = Scope.SELF)
     public void showAsDropDownSelf(View anchor, int xoff, int yoff, int gravity) {
         try {
@@ -57,7 +62,8 @@ public class PopupLancet {
         Origin.callVoid();
     }
 
-    @Proxy("showAsDropDown")
+    @Proxy()
+    @TargetMethod(methodName = "showAsDropDown")
     @TargetClass(value = "android.widget.PopupWindow", scope = Scope.ALL)
     public void showAsDropDownAll(View anchor) {
         try {
@@ -71,7 +77,8 @@ public class PopupLancet {
         Origin.callVoid();
     }
 
-    @Proxy("showAsDropDown")
+    @Proxy()
+    @TargetMethod(methodName = "showAsDropDown")
     @TargetClass(value = "android.widget.PopupWindow", scope = Scope.ALL)
     public void showAsDropDownAll(View anchor, int xoff, int yoff) {
         try {
@@ -85,7 +92,8 @@ public class PopupLancet {
         Origin.callVoid();
     }
 
-    @Proxy("showAsDropDown")
+    @Proxy()
+    @TargetMethod(methodName = "showAsDropDown")
     @TargetClass(value = "android.widget.PopupWindow", scope = Scope.ALL)
     public void showAsDropDownAll(View anchor, int xoff, int yoff, int gravity) {
         try {

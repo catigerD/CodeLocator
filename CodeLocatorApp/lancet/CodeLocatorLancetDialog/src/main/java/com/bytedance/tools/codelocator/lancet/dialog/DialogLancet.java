@@ -19,18 +19,21 @@ import com.bytedance.tools.codelocator.CodeLocator;
 import com.bytedance.tools.codelocator.model.GetDialogFragmentRunnable;
 import com.bytedance.tools.codelocator.model.GetDialogRunnable;
 import com.bytedance.tools.codelocator.utils.ViewUtils;
+import com.knightboost.lancet.api.Origin;
+import com.knightboost.lancet.api.Scope;
+import com.knightboost.lancet.api.This;
+import com.knightboost.lancet.api.annotations.Proxy;
+import com.knightboost.lancet.api.annotations.TargetClass;
+import com.knightboost.lancet.api.annotations.TargetMethod;
+import com.knightboost.lancet.api.annotations.Weaver;
 
-import me.ele.lancet.base.Origin;
-import me.ele.lancet.base.Scope;
-import me.ele.lancet.base.This;
-import me.ele.lancet.base.annotations.Proxy;
-import me.ele.lancet.base.annotations.TargetClass;
-
+@Weaver
 public class DialogLancet {
 
     public static Handler sHandler = new Handler(Looper.getMainLooper());
 
-    @Proxy("create")
+    @Proxy()
+    @TargetMethod(methodName = "create")
     @TargetClass(value = "android.app.AlertDialog$Builder")
     public AlertDialog create() {
         AlertDialog dialog = (AlertDialog) Origin.call();
@@ -53,7 +56,8 @@ public class DialogLancet {
         return dialog;
     }
 
-    @Proxy("add")
+    @Proxy()
+    @TargetMethod(methodName = "add")
     @TargetClass(value = "androidx.fragment.app.FragmentTransaction")
     public FragmentTransaction add(@NonNull Fragment fragment, @Nullable String tag) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -84,7 +88,8 @@ public class DialogLancet {
         return (FragmentTransaction) Origin.call();
     }
 
-    @Proxy("show")
+    @Proxy()
+    @TargetMethod(methodName = "show")
     @TargetClass(value = "android.app.Dialog", scope = Scope.ALL)
     public void showAll() {
         Origin.callVoid();
@@ -113,7 +118,8 @@ public class DialogLancet {
         }
     }
 
-    @Proxy("show")
+    @Proxy()
+    @TargetMethod(methodName = "show")
     @TargetClass(value = "android.app.Dialog", scope = Scope.SELF)
     public void showSelf() {
         Origin.callVoid();

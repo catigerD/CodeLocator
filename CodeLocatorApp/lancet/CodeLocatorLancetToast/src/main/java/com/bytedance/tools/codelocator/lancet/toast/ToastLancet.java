@@ -6,16 +6,19 @@ import android.widget.Toast;
 
 import com.bytedance.tools.codelocator.CodeLocator;
 import com.bytedance.tools.codelocator.utils.ViewUtils;
+import com.knightboost.lancet.api.Origin;
+import com.knightboost.lancet.api.Scope;
+import com.knightboost.lancet.api.This;
+import com.knightboost.lancet.api.annotations.Proxy;
+import com.knightboost.lancet.api.annotations.TargetClass;
+import com.knightboost.lancet.api.annotations.TargetMethod;
+import com.knightboost.lancet.api.annotations.Weaver;
 
-import me.ele.lancet.base.Origin;
-import me.ele.lancet.base.Scope;
-import me.ele.lancet.base.This;
-import me.ele.lancet.base.annotations.Proxy;
-import me.ele.lancet.base.annotations.TargetClass;
-
+@Weaver
 public class ToastLancet {
 
-    @Proxy("show")
+    @Proxy()
+    @TargetMethod(methodName = "show")
     @TargetClass(value = "android.widget.Toast", scope = Scope.SELF)
     public void showSelf() {
         try {
@@ -34,7 +37,8 @@ public class ToastLancet {
     }
 
 
-    @Proxy("show")
+    @Proxy()
+    @TargetMethod(methodName = "show")
     @TargetClass(value = "android.widget.Toast", scope = Scope.ALL)
     public void showAll() {
         try {

@@ -44,7 +44,7 @@ dependencies {
         }
     }
 
-    compileOnly 'me.ele:lancet-base:1.0.6'
+    implementation "io.github.knight-zxw:lancet-runtime:${lancexVersion}"
 }
 
 apply plugin: "com.vanniktech.maven.publish"
