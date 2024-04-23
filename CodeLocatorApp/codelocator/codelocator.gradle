@@ -1,0 +1,21 @@
+println(">>>>>>> enableCodeLocator >>>>>>")
+
+apply plugin: 'bytex'
+ByteX {
+    enable true
+    enableInDebug true
+}
+
+
+apply plugin: 'LancetX'
+LancetX {
+    enable true
+    enableInDebug true
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.*'], dir: "${rootProject.rootDir}/codelocator/libs")
+
+    implementation "com.bytedance.tools.codelocator:codelocator-core:2.0.4"
+}
